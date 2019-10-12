@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/relativeLayout"
+    android:layout_height="match_parent"
+    tools:context="com.sas.epilepstop.ui.MainActivity">
+
+    <RelativeLayout
+        android:background="#763996"
+        android:layout_width="match_parent"
+        android:id="@+id/titleBar"
+        android:layout_alignParentTop="true"
+        android:layout_height="75dp">
+
+        <Button
+            android:id="@+id/history"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_margin="25dp"
+            android:textSize="18sp"
+            android:background="@drawable/button_bg"
+            android:text="History"
+            android:textColor="@android:color/white" />
+
+        <ImageButton
+            android:contentDescription="@string/ofonsko"
+            android:id="@+id/onOff"
+            android:layout_width="60dp"
+            android:layout_height="100dp"
+            android:background="@drawable/on"
+            android:layout_margin="25dp"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="75dp"
+        android:background="@drawable/finalcut"
+        android:visibility="visible">
+    </RelativeLayout>
+</RelativeLayout>

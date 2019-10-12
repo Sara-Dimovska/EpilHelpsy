@@ -1,0 +1,15 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat">
+        <!-- Customize your theme here. -->
+
+        <item name="android:textColorHint">@color/purpleDark</item>
+        <item name="colorAccent">@color/purpleDark</item>
+        <item name="colorControlNormal">@color/purpleLight</item>
+        <item name="colorControlActivated">@color/purpleDark</item>
+        <item name="colorControlHighlight">@color/purpleDark</item>
+    </style>
+
+
+</resources>

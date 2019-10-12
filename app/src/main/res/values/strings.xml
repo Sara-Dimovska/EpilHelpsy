@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">EpilepStop</string>
+    <string name="ofonsko">OfOnsko</string>
+    <string name="dos">
+EPILEPTIC SEIZURE ONGOING!!!
+\n\n
+Do\'s
+\n\n
+- Cushion or support their head\n
+- Protect them from injury by removing objects within reach\n
+- Lay them on their side\n
+- Loosen tight clothing, especially around the neck\n
+- Once convulsions have stopped, place them in the recovery position\n
+\n\n
+Don\'ts
+\n\n
+- Put anything in their mouths\n
+- Restrict or restrain their movements\n
+- Try to move them (only do so if they are in danger)\n
+- Feed them or give them beverages (wait until they are fully alert)\n
+
+    </string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">LOGIN</string>
+    <string name="action_register">Register</string>
+    <string name="action_login_form">Login form</string>
+</resources>
