@@ -1,58 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:id="@+id/relativeLayout"
-android:layout_height="match_parent"
-tools:context="com.sas.epilepstop.ui.MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/relativeLayout"
+    android:layout_height="match_parent"
+    tools:context="com.sas.epilepstop.ui.MainActivity">
 
     <RelativeLayout
-        android:background="#763996"
-        android:layout_width="match_parent"
         android:id="@+id/titleBar"
-        android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/purpleDark">
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/btnGeneral"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="13dp"
-            android:background="@android:color/white"
-
-            android:backgroundTint="#763996"
-            android:foregroundTint="@android:color/white"
-            android:max="100"
-            android:progressBackgroundTint="#763996" />
-
-        <Button
-            android:id="@+id/btnGeneral"
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:textSize="18sp"
-            android:background="@drawable/button_bg"
-            android:text="False alarm"
-            android:textColor="@android:color/white" />
+        <ImageView
+            android:id="@+id/imgIcon"
+            android:layout_width="60dp"
+            android:layout_margin="5dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:src="@drawable/logo_header" />
 
         <TextView
-            android:id="@+id/txtDos"
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:layout_marginEnd="96dp"
+            android:text="Emergency suspected" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/menu"
+        android:layout_marginTop="75dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/greenLime">
+
+
+        <TextView
+            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/progressBar"
-            android:layout_marginTop="29dp"
-            android:maxLines="500"
-            android:scrollbars="vertical"
-            android:text="@string/dos"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:visibility="gone" />
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="50dp"
+            android:text="To disarm the upcoming alarm click the button bellow:"
+            android:textAlignment="center"
+            android:textColor="@color/purpleDark"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/buttonDisarm"
+            android:layout_width="210dp"
+            android:layout_height="43dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="111dp"
+            android:background="@color/greenLimeLoginButton"
+            android:text="Disarm button"
+            android:textColor="@color/purpleLight"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/time_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="97dp"
+            android:layout_marginTop="176dp"
+            android:text="Time remaining:"
+            android:textAlignment="center"
+            android:textColor="@color/purpleDark"
+            android:textSize="18sp" />
 
     </RelativeLayout>
 </RelativeLayout>

@@ -30,14 +30,25 @@ public class FallDetectorImpl implements SensorEventListener {
 
             float vals[] = arg0.values;
             //int sensor=arg0.sensor.getType();
-            double xx=arg0.values[0];
-            double yy=arg0.values[1];
-            double zz=arg0.values[2];
-            double aaa=Math.round(Math.sqrt(Math.pow(xx, 2)
-                    +Math.pow(yy, 2)
-                    +Math.pow(zz, 2)));
+            double x = arg0.values[0];
+            double y = arg0.values[1];
+            double z= arg0.values[2];
 
-            if (aaa<=3.0) { // free fall
+
+
+            double magnitude =Math.round(Math.sqrt(Math.pow(x, 2)
+                    +Math.pow(y, 2)
+                    +Math.pow(z, 2)));
+
+
+
+            if (magnitude >= 23) {
+               // Toast.makeText(mContext, "Fall!", Toast.LENGTH_SHORT).show();
+                Log.d("FALL"," " + magnitude);
+            }
+
+            /*
+            if (aaa<=3d0) { // free fall
                 min=true;
                 //mintime=System.currentTimeMillis();
             }
@@ -65,7 +76,7 @@ public class FallDetectorImpl implements SensorEventListener {
                 i=0;
                 min=false;
                 max=false;
-            }
+            }*/
         }
     }
 
@@ -75,7 +86,7 @@ public class FallDetectorImpl implements SensorEventListener {
     }
 
     public void init() {
-        sensorManager=(SensorManager) mContext.getSystemService(SENSOR_SERVICE);
+        sensorManager = (SensorManager) mContext.getSystemService(SENSOR_SERVICE);
         sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_UI);
     }
 

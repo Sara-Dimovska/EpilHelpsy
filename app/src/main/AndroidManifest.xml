@@ -51,6 +51,10 @@
                   android:name=".ui.SeizureActivity"
                   android:theme="@android:style/Theme.NoTitleBar" />
 
+            <activity
+                android:name=".ui.OngoingSeizureActivity"
+                android:theme="@android:style/Theme.NoTitleBar" />
+
               <activity android:name=".ui.HistoryActivity"></activity>
 
     </application>

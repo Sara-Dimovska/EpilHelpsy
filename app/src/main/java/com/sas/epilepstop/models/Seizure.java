@@ -5,29 +5,22 @@ import org.joda.time.DateTime;
 import java.util.Date;
 import java.util.UUID;
 
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
+import io.objectbox.annotation.Uid;
+
+@Entity
 public class Seizure {
-    private Integer Id;
-    private DateTime date;
+    @Id long id;
+    @Uid(7725227109581635276L)
+    private String date;
     private String duration;
 
-    public Seizure() {
-        this.date = new DateTime();
-        this.duration = "b";
-    }
-
-    public Integer getId() {
-        return Id;
-    }
-
-    public void setId(Integer id) {
-        Id = id;
-    }
-
-    public DateTime getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(DateTime date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

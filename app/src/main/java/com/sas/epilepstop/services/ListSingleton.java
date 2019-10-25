@@ -36,12 +36,13 @@ public class ListSingleton {
         return mSeizures;
     }
 
-    public Seizure getSeizure(UUID id) {
+    /*
+    public Seizure getSeizure(long id) {
         for (Seizure c : mSeizures) {
-            if (c.getId().equals(id))
+            if (c.getId() == id)
                 return c;
         }
         return null;
-    }
+    }*/
 }
 

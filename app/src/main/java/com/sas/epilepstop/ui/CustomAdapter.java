@@ -14,9 +14,12 @@ import com.sas.epilepstop.models.Seizure;
 
 import org.joda.time.format.DateTimeFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CustomAdapter extends ArrayAdapter<Seizure> {
-    public CustomAdapter(Context context, ArrayList<Seizure> seizures) {
+
+
+    public CustomAdapter(Context context, List<Seizure> seizures) {
         super(context, R.layout.seizure_item, seizures);
     }
 
@@ -34,7 +37,8 @@ public class CustomAdapter extends ArrayAdapter<Seizure> {
         seizureId.setText("#" + new Integer(position+1).toString());
 
         TextView seizureDate = (TextView) convertView.findViewById(R.id.txtDate);
-        seizureDate.setText(seizure.getDate().toString(DateTimeFormat.forPattern("MM/dd/yyyy HH:mm:ss")));
+        seizureDate.setText(seizure.getDate());
+        //seizureDate.setText(seizure.getDate().toString(DateTimeFormat.forPattern("MM/dd/yyyy HH:mm:ss")));
 
         TextView seizureDuration = (TextView) convertView.findViewById(R.id.txtDuration);
         seizureDuration.setText(seizure.getDuration());

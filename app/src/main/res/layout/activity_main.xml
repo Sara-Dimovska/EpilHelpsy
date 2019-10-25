@@ -1,45 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:id="@+id/relativeLayout"
     android:layout_height="match_parent"
+    android:background="@color/greenLime"
+    android:orientation="vertical"
     tools:context="com.sas.epilepstop.ui.MainActivity">
 
-    <RelativeLayout
-        android:background="#763996"
-        android:layout_width="match_parent"
-        android:id="@+id/titleBar"
-        android:layout_alignParentTop="true"
-        android:layout_height="75dp">
 
-        <Button
-            android:id="@+id/history"
-            android:layout_width="120dp"
-            android:layout_height="100dp"
-            android:layout_alignParentTop="true"
-            android:layout_margin="25dp"
-            android:textSize="18sp"
-            android:background="@drawable/button_bg"
-            android:text="History"
-            android:textColor="@android:color/white" />
+    <RelativeLayout
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentTop="true"
+        android:background="#763996">
+
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:layout_marginEnd="96dp"
+            android:text="Seizure detection:" />
+
 
         <ImageButton
-            android:contentDescription="@string/ofonsko"
             android:id="@+id/onOff"
             android:layout_width="60dp"
             android:layout_height="100dp"
-            android:background="@drawable/on"
+            android:layout_alignParentEnd="true"
             android:layout_margin="25dp"
-            android:layout_alignParentEnd="true"/>
+            android:background="@drawable/off"
+            android:contentDescription="@string/ofonsko" />
+
+
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="75dp"
-        android:background="@drawable/finalcut"
-        android:visibility="visible">
-    </RelativeLayout>
-</RelativeLayout>
+    <ImageView
+        android:id="@+id/imgIcon"
+        android:layout_width="250dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:src="@drawable/logo" />
+
+        <Button
+        android:id="@+id/btn_contacts"
+        style="?android:textAppearanceSmall"
+        android:layout_width="250dp"
+        android:layout_gravity="center"
+        android:layout_height="50dp"
+        android:layout_marginBottom="17dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/greenLimeLoginButton"
+        android:text="Emergency contacts"
+        android:textColor="@color/purpleLight"
+        android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_journal"
+            style="?android:textAppearanceSmall"
+            android:layout_width="250dp"
+            android:layout_gravity="center"
+            android:layout_height="50dp"
+            android:layout_marginBottom="17dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/greenLimeLoginButton"
+            android:text="My Journal"
+            android:textColor="@color/purpleLight"
+            android:textStyle="bold" />
+
+
+
+</LinearLayout>
