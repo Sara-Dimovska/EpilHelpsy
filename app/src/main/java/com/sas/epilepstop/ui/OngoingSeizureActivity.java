@@ -81,9 +81,9 @@ public class OngoingSeizureActivity extends Activity {
                 seizureBox.put(seizure);
 
                 // TODO: save record and hanhle media  player
-                Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
-                OngoingSeizureActivity.this.startActivity(intent);
-                finish();
+                //Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
+                //OngoingSeizureActivity.this.startActivity(intent);
+                //finish();
 
             }
         });
@@ -108,8 +108,7 @@ public class OngoingSeizureActivity extends Activity {
             int milliseconds = (int) (finalTime % 1000);
 
             time = minutes + ":"
-                    + String.format("%02d", seconds) + ":"
-                    + String.format("%03d", milliseconds);
+                    + String.format("%02d", seconds);
 
             /*
             Log.i("TIME","" + minutes + ":"

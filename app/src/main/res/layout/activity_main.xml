@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:id="@+id/relativeLayout"
     android:layout_height="match_parent"
-    android:background="@color/greenLime"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context="com.sas.epilepstop.ui.MainActivity">
 
@@ -17,6 +17,14 @@
         android:layout_alignParentTop="true"
         android:background="#763996">
 
+        <ImageView
+            android:id="@+id/imgIcon"
+            android:layout_width="60dp"
+            android:layout_margin="5dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:src="@drawable/logo_header" />
+
 
         <TextView
             android:id="@+id/textView2"
@@ -27,7 +35,7 @@
             android:textColor="@color/white"
             android:textSize="18dp"
             android:layout_marginEnd="96dp"
-            android:text="Seizure detection:" />
+            android:text="Motion detection:" />
 
 
         <ImageButton
@@ -42,39 +50,31 @@
 
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/imgIcon"
-        android:layout_width="250dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:src="@drawable/logo" />
 
-        <Button
-        android:id="@+id/btn_contacts"
-        style="?android:textAppearanceSmall"
-        android:layout_width="250dp"
-        android:layout_gravity="center"
-        android:layout_height="50dp"
-        android:layout_marginBottom="17dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/greenLimeLoginButton"
-        android:text="Emergency contacts"
-        android:textColor="@color/purpleLight"
-        android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btn_journal"
-            style="?android:textAppearanceSmall"
-            android:layout_width="250dp"
-            android:layout_gravity="center"
-            android:layout_height="50dp"
-            android:layout_marginBottom="17dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/greenLimeLoginButton"
-            android:text="My Journal"
-            android:textColor="@color/purpleLight"
-            android:textStyle="bold" />
+    <RelativeLayout
+        android:id="@+id/fragment_wrapper"
+        android:layout_marginTop="75dp"
+        android:layout_marginBottom="55dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
 
-</LinearLayout>
+    </RelativeLayout>
+
+
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/navigation_bar"
+            app:itemTextColor="@color/purpleDark"
+            app:itemIconTint="@drawable/selector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/purpleveryLight"
+            app:menu="@menu/manu_navigation_bar">
+
+        </android.support.design.widget.BottomNavigationView>
+
+
+</RelativeLayout>

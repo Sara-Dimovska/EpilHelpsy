@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:8132974529843159609",
-      "lastPropertyId": "3:1240009897199594480",
+      "lastPropertyId": "4:7725227109581635276",
       "name": "Seizure",
       "properties": [
         {
@@ -15,13 +15,13 @@
           "flags": 1
         },
         {
-          "id": "2:7175630026108265953",
-          "name": "date",
+          "id": "3:1240009897199594480",
+          "name": "duration",
           "type": 9
         },
         {
-          "id": "3:1240009897199594480",
-          "name": "duration",
+          "id": "4:7725227109581635276",
+          "name": "date",
           "type": 9
         }
       ],
@@ -34,12 +34,11 @@
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
-  "newUidPool": [
-    7725227109581635276
-  ],
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    7175630026108265953
+  ],
   "retiredRelationUids": [],
   "version": 1
 }

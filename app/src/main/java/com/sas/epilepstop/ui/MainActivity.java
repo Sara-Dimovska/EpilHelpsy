@@ -3,15 +3,21 @@ package com.sas.epilepstop.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.sas.epilepstop.R;
 import com.sas.epilepstop.models.ObjectBox;
 import com.sas.epilepstop.services.DetectionService;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
     boolean started = false;
     ImageButton btnToggleService;
     Button contacts, journal;
@@ -21,28 +27,36 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ObjectBox.init(this);
+
+        if(ObjectBox.get() == null) {
+            ObjectBox.init(this);
+        }
 
 
-/*
-        BottomNavigationView bottomNavigationView = findViewById(R.id.nav_bar);
+        // start first with homefragment
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_wrapper,new HomeFragment()).commit();
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navigation_bar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment selected_fragment = null;
+
                 switch (item.getItemId()) {
                     case R.id.nav_home:
-                        Toast.makeText(MainActivity.this, "Recents", Toast.LENGTH_SHORT).show();
+                        selected_fragment = new HomeFragment();
                         break;
                     case R.id.nav_contacts:
-                        Toast.makeText(MainActivity.this, "Favorites", Toast.LENGTH_SHORT).show();
+                        selected_fragment = new ContactsFragment();
                         break;
                     case R.id.nav_history:
-                        Toast.makeText(MainActivity.this, "Nearby", Toast.LENGTH_SHORT).show();
+                        selected_fragment = new HistoryFragment();
                         break;
                 }
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_wrapper,selected_fragment).commit();
                 return true;
             }
-        });*/
+        });
 
 
 

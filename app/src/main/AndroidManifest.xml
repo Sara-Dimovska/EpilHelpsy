@@ -26,7 +26,7 @@
 
        <activity
            android:name=".ui.MainActivity"
-           android:theme="@android:style/Theme.NoTitleBar">
+           android:theme="@style/AppTheme">
            <intent-filter>
                <action android:name="android.intent.action.MAIN" />
 
@@ -55,7 +55,8 @@
                 android:name=".ui.OngoingSeizureActivity"
                 android:theme="@android:style/Theme.NoTitleBar" />
 
-              <activity android:name=".ui.HistoryActivity"></activity>
+
+
 
     </application>
 

@@ -26,9 +26,28 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "2:3167607382012092122",
+      "lastPropertyId": "2:8580545878304696080",
+      "name": "Contacts",
+      "properties": [
+        {
+          "id": "1:24804278527669288",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8580545878304696080",
+          "name": "number",
+          "type": 9
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "1:8132974529843159609",
+  "lastEntityId": "2:3167607382012092122",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",

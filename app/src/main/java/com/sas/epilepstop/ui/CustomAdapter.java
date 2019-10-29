@@ -19,8 +19,11 @@ import java.util.List;
 public class CustomAdapter extends ArrayAdapter<Seizure> {
 
 
+    List<Seizure> seizures;
+
     public CustomAdapter(Context context, List<Seizure> seizures) {
         super(context, R.layout.seizure_item, seizures);
+        this.seizures = seizures;
     }
 
     @Override
@@ -33,16 +36,20 @@ public class CustomAdapter extends ArrayAdapter<Seizure> {
 
         final Seizure seizure = getItem(position);
 
-        TextView seizureId = (TextView) convertView.findViewById(R.id.txtId);
-        seizureId.setText("#" + new Integer(position+1).toString());
 
         TextView seizureDate = (TextView) convertView.findViewById(R.id.txtDate);
         seizureDate.setText(seizure.getDate());
         //seizureDate.setText(seizure.getDate().toString(DateTimeFormat.forPattern("MM/dd/yyyy HH:mm:ss")));
 
         TextView seizureDuration = (TextView) convertView.findViewById(R.id.txtDuration);
-        seizureDuration.setText(seizure.getDuration());
+        seizureDuration.setText("Duration: "+ seizure.getDuration());
 
         return convertView;
+    }
+
+    @Override
+    public Seizure getItem(int position)
+    {
+        return seizures.get(position);
     }
 }

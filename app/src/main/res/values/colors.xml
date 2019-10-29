@@ -5,9 +5,11 @@
     <color name="colorAccent">#FF4081</color>
     <color name="red">#e4121d</color>
     <color name="black">#000000</color>
-    <color name="purpleLight">#A47DB8</color>
+    <color name="purpleLight">#a27ab7</color>
+    <color name="purpleveryLight">#e4d5ec</color>
     <color name="greenLime">#D8FFCF</color>
     <color name="white">#ffffff</color>
     <color name="greenLimeLoginButton">#89D33C</color>
+
     <color name="purpleDark">#763995</color>
 </resources>
