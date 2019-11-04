@@ -74,16 +74,16 @@ public class OngoingSeizureActivity extends Activity {
 
 
                 Calendar calendar = Calendar.getInstance();
-                SimpleDateFormat curFormater = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat curFormater = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
                 String date = curFormater.format(calendar.getTime());
 
                 seizure.setDate(date);
                 seizureBox.put(seizure);
 
                 // TODO: save record and hanhle media  player
-                //Intent intent = new Intent(getApplicationContext(), HistoryActivity.class);
-                //OngoingSeizureActivity.this.startActivity(intent);
-                //finish();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                OngoingSeizureActivity.this.startActivity(intent);
+                finish();
 
             }
         });

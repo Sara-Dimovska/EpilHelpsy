@@ -4,7 +4,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:id="@+id/relativeLayout" android:orientation="vertical"
-    android:background="@color/greenLime"
+    android:background="@color/white"
 android:layout_height="match_parent">
 
         <RelativeLayout
@@ -45,7 +45,7 @@ android:layout_height="match_parent">
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="14dp"
-            android:background="@color/greenLimeLoginButton"
+            android:background="@color/purpleveryLight"
             android:text="Seizure ended"
             android:textStyle="bold"
             android:layout_marginBottom="10dp"

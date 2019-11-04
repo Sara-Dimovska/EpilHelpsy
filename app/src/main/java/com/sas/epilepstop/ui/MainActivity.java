@@ -21,6 +21,7 @@ public class MainActivity extends FragmentActivity {
     boolean started = false;
     ImageButton btnToggleService;
     Button contacts, journal;
+    public boolean on_off = false;
 
 
     @Override

@@ -13,6 +13,7 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.sas.epilepstop.ui.MainActivity;
 import com.sas.epilepstop.ui.SeizureActivity;
 
 import org.json.JSONException;
@@ -24,6 +25,7 @@ import java.util.concurrent.ExecutionException;
 public class DetectionService extends Service {
    // FallDetectorImpl mFallDetector;
     ShakeDetectorImpl mShakeDetector;
+    MainActivity ob;
 
     public DetectionService() {
     }
@@ -41,6 +43,8 @@ public class DetectionService extends Service {
         //getApplicationContext().registerReceiver(mFallReceiver, new IntentFilter("FALL_EVENT"));
         getApplicationContext().registerReceiver(mShakeReceiver, new IntentFilter("SHAKE_EVENT"));
 
+        ob= new MainActivity();
+
     }
 
     @Override
@@ -50,6 +54,7 @@ public class DetectionService extends Service {
         mShakeDetector.init();
 
         Toast.makeText(this, "Detection Service Started", Toast.LENGTH_SHORT).show();
+        ob.on_off = false;
 
         return super.onStartCommand(intent,flags,startId);
     }
@@ -64,6 +69,7 @@ public class DetectionService extends Service {
 
 
         Toast.makeText(this, "Detection Service Stopped", Toast.LENGTH_SHORT).show();
+        ob.on_off = true;
     }
 
 
