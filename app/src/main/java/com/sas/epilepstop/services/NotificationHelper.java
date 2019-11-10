@@ -16,7 +16,6 @@ import android.telephony.SmsManager;
 import android.widget.TextView;
 
 public class NotificationHelper {
-    private static final int MAKE_CALL_PERMISSION_REQUEST_CODE = 1;
     private Context mContext;
     String phoneNumber = "+38978507995";
 
@@ -30,16 +29,6 @@ public class NotificationHelper {
         this.mContext = mContext;
     }
 
-    public void makeACall(){
-        if (checkPermission(Manifest.permission.CALL_PHONE)) {
-            String dial = "tel:" + phoneNumber;
-            Intent dialogIntent = new Intent(Intent.ACTION_CALL, Uri.parse(dial));
-            dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            mContext.startActivity(dialogIntent);
-        } else {
-            Log.e("NO DIAL PERMISSIONS","CALL DENIED");
-        }
-    }
 
     private boolean checkPermission(String permission) {
         return ContextCompat.checkSelfPermission(mContext, permission) == PackageManager.PERMISSION_GRANTED;
@@ -55,6 +44,10 @@ public class NotificationHelper {
         }
     }
     public String getLocation(){
+
+        //Add permission
+
+
         String locationLink ="";
         locationManager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
 

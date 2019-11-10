@@ -16,6 +16,8 @@ import android.widget.Toast;
 import com.sas.epilepstop.R;
 import com.sas.epilepstop.models.ObjectBox;
 import com.sas.epilepstop.services.DetectionService;
+import com.sas.epilepstop.services.NotificationHelper;
+import com.sas.epilepstop.services.ToggleButtonSingleton;
 
 public class MainActivity extends FragmentActivity {
     boolean started = false;
@@ -31,7 +33,9 @@ public class MainActivity extends FragmentActivity {
 
         if(ObjectBox.get() == null) {
             ObjectBox.init(this);
+
         }
+
 
 
         // start first with homefragment
@@ -60,24 +64,33 @@ public class MainActivity extends FragmentActivity {
         });
 
 
-
+       // boolean on_off =  ToggleButtonSingleton.getInstance();
         btnToggleService = findViewById(R.id.onOff);
         btnToggleService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), DetectionService.class);
-                if (!started) {
+                if (on_off) {
                     getApplicationContext().startService(intent);
+                   // ToggleButtonSingleton.toggle(true);
+
                 } else {
                     getApplicationContext().stopService(intent);
+                    //ToggleButtonSingleton.toggle(false);
+
                 }
 
-                started = !started;
+                //started = !started;
 
-                if (started) {
+
+                if (on_off) {
                     btnToggleService.setBackgroundResource(R.drawable.on);
+                    on_off = !on_off;
+                   // ToggleButtonSingleton.toggle(false);
                 } else {
                     btnToggleService.setBackgroundResource(R.drawable.off);
+                    on_off = !on_off;
+                    //ToggleButtonSingleton.toggle(true);
                 }
             }
         });

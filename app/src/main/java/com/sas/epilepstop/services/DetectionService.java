@@ -54,7 +54,7 @@ public class DetectionService extends Service {
         mShakeDetector.init();
 
         Toast.makeText(this, "Detection Service Started", Toast.LENGTH_SHORT).show();
-        ob.on_off = false;
+       // ob.on_off = false;
 
         return super.onStartCommand(intent,flags,startId);
     }
@@ -69,7 +69,7 @@ public class DetectionService extends Service {
 
 
         Toast.makeText(this, "Detection Service Stopped", Toast.LENGTH_SHORT).show();
-        ob.on_off = true;
+        //ob.on_off = true;
     }
 
 
