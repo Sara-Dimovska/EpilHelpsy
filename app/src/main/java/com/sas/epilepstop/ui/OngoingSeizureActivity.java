@@ -74,6 +74,13 @@ public class OngoingSeizureActivity extends Activity {
 
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ongoing_seizure);
@@ -98,12 +105,15 @@ public class OngoingSeizureActivity extends Activity {
 
         //mfucedlocationprovider = LocationServices.getFusedLocationProviderClient(this);
 
+
+
         //Add permission
         ActivityCompat.requestPermissions(this,new String[]
                 {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
 
 //        locationManager=(LocationManager) getSystemService(this.LOCATION_SERVICE);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
 
         //Check gps is enable or not
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
@@ -172,6 +182,7 @@ public class OngoingSeizureActivity extends Activity {
         });
 
     }
+
     private class SendSMSTask extends AsyncTask<Void,Void,Void> {
 
         @Override
