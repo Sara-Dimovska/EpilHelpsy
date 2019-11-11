@@ -18,17 +18,16 @@ import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
 import com.sas.epilepstop.R;
 import com.sas.epilepstop.models.Contacts;
-import com.sas.epilepstop.models.Contacts_;
 import com.sas.epilepstop.models.ObjectBox;
 import com.sas.epilepstop.models.Seizure;
+import com.sas.epilepstop.services.GPSTracker;
 import com.sas.epilepstop.services.NotificationHelper;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
@@ -59,7 +58,7 @@ public class OngoingSeizureActivity extends Activity {
     List<Contacts> contactElements;
     List<String> numberList;
     String numbers_string_forAPI;
-    FusedLocationProviderClient mfucedlocationprovider;
+    GPSTracker gpsTracker;
 
 
     MediaPlayer mp = null;
@@ -88,8 +87,6 @@ public class OngoingSeizureActivity extends Activity {
         /*
         mp = MediaPlayer.create(this,R.raw.finall); // sound is inside res/raw/mysound
         mp.start();
-
-
         // for the song
         timer =  new CountDownTimer(10000,1000) {
             @Override
@@ -102,11 +99,11 @@ public class OngoingSeizureActivity extends Activity {
             }
         }.start();*/
 
+        gpsTracker = new GPSTracker(OngoingSeizureActivity.this);
+        setLocationAddress();
 
-        //mfucedlocationprovider = LocationServices.getFusedLocationProviderClient(this);
 
-
-
+        /*
         //Add permission
         ActivityCompat.requestPermissions(this,new String[]
                 {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
@@ -128,6 +125,7 @@ public class OngoingSeizureActivity extends Activity {
             getLocation();
         }
 
+
         // get  emergency contacts
         Box<Contacts>  contactsBox = ObjectBox.get().boxFor(Contacts.class);
         contactElements = contactsBox.getAll();
@@ -146,8 +144,11 @@ public class OngoingSeizureActivity extends Activity {
 
         }
 
+        */
+
+
         // send sms api
-       // new SendSMSTask().execute();
+        // new SendSMSTask().execute();
 
 
         startTime = SystemClock.uptimeMillis();
@@ -183,12 +184,52 @@ public class OngoingSeizureActivity extends Activity {
 
     }
 
+    private void setLocationAddress() {
+        if (gpsTracker.getLocation() != null) {
+            if (gpsTracker.getLatitude() != 0 && gpsTracker.getLongitude() != 0) {
+                String string = gpsTracker.getLatitude() + "  " + gpsTracker.getLongitude();
+                // Do whatever you want
+            } else {
+                buildAlertMessageNoGps();
+            }
+        } else {
+            buildAlertMessageNoGps();
+        }
+    }
+    private void buildAlertMessageNoGps() {
+        if (!(OngoingSeizureActivity.this).isFinishing()) {
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+            builder1.setMessage("Location not detected");
+            builder1.setCancelable(true);
+
+            builder1.setPositiveButton("Try again",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                            setLocationAddress();
+                        }
+                    });
+
+            builder1.setNegativeButton(
+                    android.R.string.cancel,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                            finish();
+                        }
+                    });
+
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
+        }
+    }
+
     private class SendSMSTask extends AsyncTask<Void,Void,Void> {
 
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-              sendMMS();
+                sendMMS();
             } catch (Exception  e){
                 e.printStackTrace();
             }
@@ -243,7 +284,7 @@ public class OngoingSeizureActivity extends Activity {
                 Manifest.permission.ACCESS_COARSE_LOCATION) !=PackageManager.PERMISSION_GRANTED)
         {
             ActivityCompat.requestPermissions(this,new String[]
-                {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+                    {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
         }
         else
         {
@@ -280,7 +321,7 @@ public class OngoingSeizureActivity extends Activity {
                 longitude=String.valueOf(longi);
 
                 locationLINK = "https://maps.google.com/?q=" +  latitude + "," + longitude;
-        }
+            }
             else
             {
                 Toast.makeText(this, "Can't Get Your Location", Toast.LENGTH_SHORT).show();
@@ -363,10 +404,6 @@ public class OngoingSeizureActivity extends Activity {
         }
         request.disconnect();
 
-        }
-
     }
 
-
-
-
+}

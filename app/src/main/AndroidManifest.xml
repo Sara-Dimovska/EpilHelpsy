@@ -45,6 +45,7 @@
                   android:exported="true" />
 
 
+
               <activity
                   android:name=".ui.SeizureActivity"
                   android:theme="@android:style/Theme.NoTitleBar" />
