@@ -17,7 +17,9 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +27,7 @@ import android.widget.Toast;
 
 import com.sas.epilepstop.R;
 import com.sas.epilepstop.models.Contacts;
+import com.sas.epilepstop.models.Contacts_;
 import com.sas.epilepstop.models.ObjectBox;
 import com.sas.epilepstop.models.Seizure;
 import com.sas.epilepstop.services.GPSTracker;
@@ -57,7 +60,7 @@ public class OngoingSeizureActivity extends Activity {
     String locationLINK;
     List<Contacts> contactElements;
     List<String> numberList;
-    String numbers_string_forAPI;
+    String message;
     GPSTracker gpsTracker;
 
 
@@ -84,7 +87,7 @@ public class OngoingSeizureActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ongoing_seizure);
 
-        /*
+
         mp = MediaPlayer.create(this,R.raw.finall); // sound is inside res/raw/mysound
         mp.start();
         // for the song
@@ -97,10 +100,10 @@ public class OngoingSeizureActivity extends Activity {
                 mp.stop();
                 mp.release();
             }
-        }.start();*/
+        }.start();
 
         gpsTracker = new GPSTracker(OngoingSeizureActivity.this);
-        setLocationAddress();
+        setLocationLink();
 
 
         /*
@@ -126,6 +129,10 @@ public class OngoingSeizureActivity extends Activity {
         }
 
 
+
+
+        */
+
         // get  emergency contacts
         Box<Contacts>  contactsBox = ObjectBox.get().boxFor(Contacts.class);
         contactElements = contactsBox.getAll();
@@ -134,18 +141,30 @@ public class OngoingSeizureActivity extends Activity {
                 .property(Contacts_.number)
                 .findStrings();
 
-        numbers_string_forAPI ="";
 
+
+        message = "Your patient is having a seizure right now on this location: " + locationLINK;
         for(int i=0; i< numbers.length; i++) {
-            if(i==0)
-                numbers_string_forAPI += numbers[0];
-            else
-                numbers_string_forAPI += "," + numbers[0];
 
+
+            if (ContextCompat.checkSelfPermission(OngoingSeizureActivity.this, Manifest.permission.SEND_SMS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                // Permission is not granted
+                // Ask for permision
+                ActivityCompat.requestPermissions(this,new String[] { Manifest.permission.SEND_SMS}, 1);
+            }
+            else {
+                // Permission has already been granted
+                try {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(numbers[i], null, message, null, null);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+           //
         }
-
-        */
-
 
         // send sms api
         // new SendSMSTask().execute();
@@ -164,7 +183,7 @@ public class OngoingSeizureActivity extends Activity {
 
                 Box<Seizure> seizureBox = ObjectBox.get().boxFor(Seizure.class);
                 Seizure seizure = new Seizure();
-                seizure.setDuration(time + "");
+                seizure.setDuration(time);
 
 
                 Calendar calendar = Calendar.getInstance();
@@ -184,11 +203,10 @@ public class OngoingSeizureActivity extends Activity {
 
     }
 
-    private void setLocationAddress() {
+    private void setLocationLink() {
         if (gpsTracker.getLocation() != null) {
             if (gpsTracker.getLatitude() != 0 && gpsTracker.getLongitude() != 0) {
-                String string = gpsTracker.getLatitude() + "  " + gpsTracker.getLongitude();
-                // Do whatever you want
+                locationLINK = "https://maps.google.com/?q=" +  gpsTracker.getLatitude() + "," + gpsTracker.getLongitude();
             } else {
                 buildAlertMessageNoGps();
             }
@@ -206,7 +224,7 @@ public class OngoingSeizureActivity extends Activity {
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.cancel();
-                            setLocationAddress();
+                            setLocationLink();
                         }
                     });
 
@@ -261,7 +279,7 @@ public class OngoingSeizureActivity extends Activity {
             int milliseconds = (int) (finalTime % 1000);
 
             time = minutes + ":"
-                    + String.format("%02d", seconds);
+                    + String.format("%02d", seconds) + " seconds";
 
             /*
             Log.i("TIME","" + minutes + ":"
@@ -360,7 +378,7 @@ public class OngoingSeizureActivity extends Activity {
         String myPassword = "Athcat!!d3t.bash";
 
         // the details of the message we want to send
-        String myData = "{to: \"" + numbers_string_forAPI+ "\", encoding: \"UNICODE\", body: \""+ "Your patient is having a seizure right now on this location: " + locationLINK + "\"}";
+        //String myData = "{to: \"" + numbers_string_forAPI+ "\", encoding: \"UNICODE\", body: \""+ "Your patient is having a seizure right now on this location: " + locationLINK + "\"}";
 
 
         // build the request based on the supplied settings
@@ -379,7 +397,7 @@ public class OngoingSeizureActivity extends Activity {
 
         // write the data to the request
         OutputStreamWriter out = new OutputStreamWriter(request.getOutputStream());
-        out.write(myData);
+        //out.write(myData);
         out.close();
 
         // try ... catch to handle errors nicely

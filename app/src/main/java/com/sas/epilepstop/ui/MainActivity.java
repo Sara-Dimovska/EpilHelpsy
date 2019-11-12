@@ -23,7 +23,7 @@ public class MainActivity extends FragmentActivity {
     boolean started = false;
     ImageButton btnToggleService;
     Button contacts, journal;
-    public boolean on_off = false;
+    public boolean on_off = true;
 
 
     @Override
@@ -36,6 +36,18 @@ public class MainActivity extends FragmentActivity {
 
         }
 
+        Intent intent = new Intent(getApplicationContext(), DetectionService.class);
+        if (on_off) {
+            getApplicationContext().startService(intent);
+            on_off = !on_off;
+            // ToggleButtonSingleton.toggle(true);
+
+        } else {
+            getApplicationContext().stopService(intent);
+            on_off = !on_off;
+            //ToggleButtonSingleton.toggle(false);
+
+        }
 
 
         // start first with homefragment
@@ -69,48 +81,24 @@ public class MainActivity extends FragmentActivity {
         btnToggleService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), DetectionService.class);
+
                 if (on_off) {
                     getApplicationContext().startService(intent);
+                    btnToggleService.setBackgroundResource(R.drawable.on);
+                    on_off = !on_off;
                    // ToggleButtonSingleton.toggle(true);
 
                 } else {
                     getApplicationContext().stopService(intent);
+                    btnToggleService.setBackgroundResource(R.drawable.off);
+                    on_off = !on_off;
                     //ToggleButtonSingleton.toggle(false);
 
                 }
 
-                //started = !started;
 
-
-                if (on_off) {
-                    btnToggleService.setBackgroundResource(R.drawable.on);
-                    on_off = !on_off;
-                   // ToggleButtonSingleton.toggle(false);
-                } else {
-                    btnToggleService.setBackgroundResource(R.drawable.off);
-                    on_off = !on_off;
-                    //ToggleButtonSingleton.toggle(true);
-                }
             }
         });
 
-
-        /*
-        if (started) {
-            Intent intent = new Intent(getApplicationContext(), DetectionService.class);
-            getApplicationContext().startService(intent);
-        }
-
-
-
-
-        btnHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(MainActivity.this, HistoryActivity.class);
-                MainActivity.this.startActivity(myIntent);
-            }
-        });*/
     }
 }

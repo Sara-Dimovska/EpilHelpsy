@@ -21,7 +21,7 @@ public class ShakeDetectorImpl implements ShakeDetector.OnShakeListener  {
 
 
         ShakeDetector.create(mContext, this);
-        ShakeDetector.updateConfiguration(4F, 5);
+        ShakeDetector.updateConfiguration(4F,4);
 
 
 

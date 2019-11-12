@@ -95,8 +95,8 @@ public class HistoryFragment extends Fragment {
                 int index = info.position;
 
                 //if (item.ti == "Delete") {
-                    Seizure seizure = (Seizure) listview_seizures.getAdapter().getItem(index);
-                    seizureBox.remove(seizure);
+                Seizure seizure = (Seizure) listview_seizures.getAdapter().getItem(index);
+                seizureBox.remove(seizure);
                 Toast.makeText(getActivity().getApplicationContext(), "Seizure record has been deleted", Toast.LENGTH_SHORT).show();
 
                 listview_seizures.setAdapter(null);

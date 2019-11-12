@@ -59,10 +59,6 @@ public class SeizureActivity extends Activity {
         setContentView(R.layout.activity_seizure);
 
 
-        Uri defaultRingtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-
-        MediaPlayer mediaPlayer = new MediaPlayer();
-
         try {
             Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
@@ -102,8 +98,6 @@ public class SeizureActivity extends Activity {
         });
 
 
-        //Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-       // notificationBuilder.setSound(uri);
 
     }
     @Override
