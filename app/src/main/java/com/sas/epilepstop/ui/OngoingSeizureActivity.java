@@ -31,7 +31,6 @@ import com.sas.epilepstop.models.Contacts_;
 import com.sas.epilepstop.models.ObjectBox;
 import com.sas.epilepstop.models.Seizure;
 import com.sas.epilepstop.services.GPSTracker;
-import com.sas.epilepstop.services.NotificationHelper;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.RequestBody;
@@ -179,12 +178,10 @@ public class OngoingSeizureActivity extends Activity {
             public void onClick(View view) {
                 timeSwap += timeInMillies;
                 myHandler.removeCallbacks(updateTimerMethod);
-                //Log.i("TIme", " " + time);
 
                 Box<Seizure> seizureBox = ObjectBox.get().boxFor(Seizure.class);
                 Seizure seizure = new Seizure();
                 seizure.setDuration(time);
-
 
                 Calendar calendar = Calendar.getInstance();
                 SimpleDateFormat curFormater = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
@@ -193,7 +190,6 @@ public class OngoingSeizureActivity extends Activity {
                 seizure.setDate(date);
                 seizureBox.put(seizure);
 
-                // TODO: save record and hanhle media  player
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 OngoingSeizureActivity.this.startActivity(intent);
                 finish();
@@ -242,6 +238,7 @@ public class OngoingSeizureActivity extends Activity {
         }
     }
 
+    /*
     private class SendSMSTask extends AsyncTask<Void,Void,Void> {
 
         @Override
@@ -260,7 +257,7 @@ public class OngoingSeizureActivity extends Activity {
             super.onPostExecute(aVoid);
         }
     }
-
+*/
     @Override
     public void onDestroy() {
         super.onDestroy();

@@ -25,7 +25,6 @@ import java.util.concurrent.ExecutionException;
 public class DetectionService extends Service {
    // FallDetectorImpl mFallDetector;
     ShakeDetectorImpl mShakeDetector;
-    MainActivity ob;
 
     public DetectionService() {
     }
@@ -42,8 +41,6 @@ public class DetectionService extends Service {
 
         //getApplicationContext().registerReceiver(mFallReceiver, new IntentFilter("FALL_EVENT"));
         getApplicationContext().registerReceiver(mShakeReceiver, new IntentFilter("SHAKE_EVENT"));
-
-        ob= new MainActivity();
 
     }
 

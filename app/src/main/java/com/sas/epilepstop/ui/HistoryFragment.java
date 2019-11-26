@@ -24,7 +24,6 @@ import android.widget.Toast;
 import com.sas.epilepstop.R;
 import com.sas.epilepstop.models.ObjectBox;
 import com.sas.epilepstop.models.Seizure;
-import com.sas.epilepstop.services.ListSingleton;
 
 import java.util.List;
 

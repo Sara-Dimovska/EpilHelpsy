@@ -22,8 +22,6 @@ import android.widget.Toast;
 
 import com.sas.epilepstop.R;
 import com.sas.epilepstop.models.Seizure;
-import com.sas.epilepstop.services.ListSingleton;
-import com.sas.epilepstop.services.NotificationHelper;
 import com.sas.epilepstop.services.PrefHelper;
 
 import org.joda.time.DateTime;
@@ -69,7 +67,7 @@ public class SeizureActivity extends Activity {
 
 
          time_remaining = findViewById(R.id.time_txt);
-         timer =  new CountDownTimer(5000,1000) {
+         timer =  new CountDownTimer(20000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 time_remaining.setText("Time remaining:" + String.valueOf(counter));
